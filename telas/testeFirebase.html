@@ -1,0 +1,63 @@
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAs5okKwdC4pp6KqIWD06t9PpEIPks2V24",
+        authDomain: "teste-727f2.firebaseapp.com",
+        databaseURL: "https://teste-727f2.firebaseio.com",
+        projectId: "teste-727f2",
+        storageBucket: "teste-727f2.appspot.com",
+        messagingSenderId: "796141122650"
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
+
+    function writeUserData() {
+        firebase.database().ref('users/' + 123).set({
+        username: document.getElementById('nomeNovo').value,
+        email: 'Rafa@.com',
+        profile_picture : 'imageUrl'
+    });
+    }
+    function envia(){
+        writeUserData();
+    }
+    
+
+    var starCountRef = firebase.database().ref('users/123/username');
+
+    var texto = document.getElementById('nome');
+
+    
+        firebase.database().ref('users/123/username').on('value', function(snapshot) {
+            document.getElementById('nome').value = snapshot.val();
+        });
+    
+
+    </script>
+
+
+
+</head>
+<body>
+    <table class="classe">
+        <tr>
+            <td>
+               Antigo: <input id='nome' type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Novo: <input id='nomeNovo' type="text">
+            </td>
+        
+            <td>
+                <buton onclick="envia()" style="border:ridge">Enviar nome</buton>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
